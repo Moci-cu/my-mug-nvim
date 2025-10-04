@@ -16,6 +16,16 @@ return {
         ["<CR>"] = { "accept", "fallback" },
         ["<C-d>"] = { "scroll_documentation_up" },
         ["<C-f>"] = { "scroll_documentation_down" },
+        ["<C-n>"] = false,
+        ["<C-p>"] = false,
+        ["<C-j>"] = {
+          "select_next",
+          "fallback_to_mappings",
+        },
+        ["<C-k>"] = {
+          "select_prev",
+          "fallback_to_mappings",
+        },
         ["<Tab>"] = {
           function()
             local ok_actions, actions = pcall(require, "blink.cmp.actions")
