@@ -1,12 +1,9 @@
 return {
-  'datsfilipe/vesper.nvim',
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require('vesper').setup({
-      transparent = true,
-      disable_background = true,
-    })
-    vim.cmd.colorscheme('vesper')
-  end,
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      vim.cmd("colorscheme rose-pine")
+    end
+  }
 }

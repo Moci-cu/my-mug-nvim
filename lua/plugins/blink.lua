@@ -9,6 +9,12 @@ return {
   opts = function()
     local ui = require("config.ui")
     return {
+      enabled = function()
+        if vim.bo.buftype == 'prompt' then
+          return true
+        end
+        return vim.bo.filetype ~= 'markdown'
+      end,
       keymap = {
         preset = "super-tab",
         ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },

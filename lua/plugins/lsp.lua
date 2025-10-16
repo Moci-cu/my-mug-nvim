@@ -61,7 +61,7 @@ return {
         capabilities = capabilities,
       })
 
-      local servers = { "lua_ls", "clangd" }
+      local servers = { "lua_ls", "clangd", "marksman" }
       for _, server in ipairs(servers) do
         local ok, server_opts = pcall(require, "lsp." .. server)
         if ok then
