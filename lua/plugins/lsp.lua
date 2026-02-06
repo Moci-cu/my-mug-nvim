@@ -6,6 +6,8 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
+      -- Ensure blink.cmp is loaded before LSP so capabilities are available
+      "saghen/blink.cmp",
     },
     config = function()
       -- This is where all the LSP shenanigans will live
@@ -20,8 +22,11 @@ return {
           vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
         end
 
-        -- All our keymaps, which will now be buffer-local
+        -- All LSP keymaps, buffer-local (only active when LSP is attached)
         map("gd", vim.lsp.buf.definition, "Go to Definition")
+        map("gD", vim.lsp.buf.declaration, "Go to Declaration")
+        map("gi", vim.lsp.buf.implementation, "Go to Implementation")
+        map("gr", vim.lsp.buf.references, "References")
         map("K", vim.lsp.buf.hover, "Hover Documentation")
         map("<leader>rn", vim.lsp.buf.rename, "Rename")
         map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
