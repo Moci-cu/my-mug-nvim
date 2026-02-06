@@ -17,4 +17,6 @@ map('n', '<leader>rg', '<cmd>Telescope live_grep<cr>', opts)
 map('n', '<leader>ht', terminal.toggle_horizontal, { silent = true, nowait = true, desc = 'Toggle terminal' })
 map('n', '<leader>ts', terminal.toggle_vertical, { silent = true, nowait = true, desc = 'Toggle vertical terminal' })
 
-
+map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev Diagnostic' })
+map('n', ']d', vim.diagnostic.goto_next, { desc = 'Next Diagnostic' })
+map('n', 'gl', vim.diagnostic.open_float, { desc = 'Line Diagnostics' })
