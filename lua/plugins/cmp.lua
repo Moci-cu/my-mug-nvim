@@ -25,7 +25,7 @@ return {
 
     cmp.setup {
       enabled = function()
-        return vim.bo.buftype ~= "prompt" and vim.bo.filetype == "markdown"
+        return vim.bo.buftype ~= "prompt"
       end,
       snippet = {
         expand = function(args)
