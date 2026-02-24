@@ -34,8 +34,7 @@ return {
         },
 
         provider = _99.OpenCodeProvider,
-        model = "deepseek/deepseek-chat",
-        -- model = "qwen/qwen3-next"
+        model = "fireworks-ai/accounts/fireworks/models/kimi-k2p5"
       })
 
       vim.keymap.set("v", "<leader>9v", function()

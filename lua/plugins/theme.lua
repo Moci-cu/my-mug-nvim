@@ -1,23 +1,17 @@
 return {
   {
-    "craftzdog/solarized-osaka.nvim",
+    "Everblush/nvim",
+    name = "everblush",
     lazy = false,
     priority = 1000,
-    config = function(_, opts)
-      require("solarized-osaka").setup(opts)
-      vim.cmd("colorscheme solarized-osaka")
+    config = function()
+      require("everblush").setup({
+        transparent_background = false,
+        nvim_tree = {
+          contrast = false,
+        },
+      })
+      vim.cmd("colorscheme everblush")
     end,
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-      on_highlights = function(hl, c)
-        hl.NvimTreeNormal = { bg = "none" }
-        hl.NvimTreeNormalNC = { bg = "none" }
-        hl.NvimTreeEndOfBuffer = { bg = "none" }
-      end,
-    },
   }
 }

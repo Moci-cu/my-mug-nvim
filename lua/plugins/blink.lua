@@ -19,7 +19,15 @@ return {
         preset = "super-tab",
         ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide" },
-        ["<CR>"] = { "accept", "fallback" },
+        -- Fix: Hanya accept jika ada item yang dipilih, selain itu fallback ke newline
+        ["<CR>"] = {
+          function(cmp)
+            if cmp.is_visible() and cmp.get_selected_item() then
+              return cmp.accept()
+            end
+          end,
+          "fallback"
+        },
         ["<C-d>"] = { "scroll_documentation_up" },
         ["<C-f>"] = { "scroll_documentation_down" },
         ["<C-n>"] = false,
