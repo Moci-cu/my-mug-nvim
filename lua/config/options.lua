@@ -11,3 +11,4 @@ vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.clipboard = "unnamedplus" -- share yank/paste with system clipboard
+vim.opt.fillchars = { eob = " " } -- remove ~ from empty lines
