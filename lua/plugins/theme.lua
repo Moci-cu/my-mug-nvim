@@ -1,17 +1,34 @@
 return {
   {
-    "Everblush/nvim",
-    name = "everblush",
+    "eldritch-theme/eldritch.nvim",
     lazy = false,
     priority = 1000,
+    opts = {
+      transparent = true,
+      italics = {
+        comments = true,
+        keywords = true,
+        functions = false,
+        strings = false,
+        variables = false,
+      },
+      overrides = {},
+      palette_overrides = {}
+    },
     config = function()
-      require("everblush").setup({
-        transparent_background = false,
-        nvim_tree = {
-          contrast = false,
+      require("eldritch").setup({
+        transparent = true,
+        italics = {
+          comments = true,
+          keywords = true,
+          functions = false,
+          strings = false,
+          variables = false,
         },
+        overrides = {},
+        palette_overrides = {}
       })
-      vim.cmd("colorscheme everblush")
+      vim.cmd.colorscheme("eldritch")
     end,
-  }
+  },
 }
