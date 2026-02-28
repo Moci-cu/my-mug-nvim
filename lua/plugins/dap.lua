@@ -13,9 +13,8 @@ return {
         },
       }
 
-      require("dap.ext.vscode").load_launchjs(nil, {
-        codelldb = { "c", "cpp", "rust" },
-      })
+      -- launch.json is now read automatically on-demand
+      -- see :help dap-provider
     end,
     dependencies = {
       -- UI for nvim-dap
