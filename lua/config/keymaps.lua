@@ -15,6 +15,7 @@ map('n', '<leader>f', '<cmd>FzfLua files<cr>', opts)
 map('n', '<leader>rg', '<cmd>FzfLua live_grep<cr>', opts)
 
 map('n', '<leader>e', '<cmd>Neotree toggle<cr>', { silent = true, desc = 'Toggle Neo-tree' })
+map('n', '<C-h>', '<cmd>Neotree focus<cr>', { silent = true, desc = 'Focus Neo-tree' })
 map('n', '<leader>ht', terminal.toggle_horizontal, { silent = true, nowait = true, desc = 'Toggle terminal' })
 map('n', '<leader>ts', terminal.toggle_vertical, { silent = true, nowait = true, desc = 'Toggle vertical terminal' })
 
