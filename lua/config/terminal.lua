@@ -168,9 +168,15 @@ vim.keymap.set('t', '<C-h>', [[<C-\><C-n><Cmd>lua require('config.terminal').foc
   desc = 'Focus file from vertical terminal',
   silent = true,
 })
-vim.keymap.set('t', '<C-k>', [[<C-\><C-n><Cmd>lua require('config.terminal').focus_horizontal_file()<CR>]], {
+vim.keymap.set('t', '<C-k>', function()
+  if vim.bo.filetype == "fzf" then
+    return "<C-k>"
+  end
+  return [[<C-\><C-n><Cmd>lua require('config.terminal').focus_horizontal_file()<CR>]]
+end, {
   desc = 'Focus file from horizontal terminal',
   silent = true,
+  expr = true,
 })
 
 return M

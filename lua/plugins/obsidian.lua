@@ -4,7 +4,7 @@ return {
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+    "ibhagwan/fzf-lua",
     "nvim-treesitter/nvim-treesitter",
   },
   opts = function()
@@ -16,6 +16,9 @@ return {
           name = "personal",
           path = vault_path,
         },
+      },
+      picker = {
+        name = "fzf-lua",
       },
       completion = {
         nvim_cmp = true,

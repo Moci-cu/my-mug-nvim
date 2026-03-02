@@ -11,8 +11,8 @@ end
 map({ 'n', 'v' }, '<Esc>', clear_search_then_escape, { expr = true, desc = 'Escape and clear search' })
 map({ 'n', 'v' }, '<C-c>', clear_search_then_escape, { expr = true, desc = 'Escape and clear search' })
 
-map('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
-map('n', '<leader>rg', '<cmd>Telescope live_grep<cr>', opts)
+map('n', '<leader>f', '<cmd>FzfLua files<cr>', opts)
+map('n', '<leader>rg', '<cmd>FzfLua live_grep<cr>', opts)
 
 map('n', '<leader>e', '<cmd>Neotree toggle<cr>', { silent = true, desc = 'Toggle Neo-tree' })
 map('n', '<leader>ht', terminal.toggle_horizontal, { silent = true, nowait = true, desc = 'Toggle terminal' })

@@ -63,16 +63,7 @@ function M.apply_float_style()
   vim.api.nvim_set_hl(0, "BlinkCmpSignature", { link = "NormalFloat" })
   vim.api.nvim_set_hl(0, "BlinkCmpSignatureBorder", { link = "FloatBorder" })
 
-  -- Telescope mirrors NvChad-style float styling too.
-  vim.api.nvim_set_hl(0, "TelescopeNormal", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "TelescopePromptTitle", { link = "Title" })
-  vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { link = "NormalFloat" })
+  -- fzf-lua inherits NormalFloat/FloatBorder automatically.
 end
 
 M.apply_float_style()
