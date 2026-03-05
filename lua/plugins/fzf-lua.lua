@@ -20,6 +20,7 @@ return {
         title_pos = "center",
       },
     },
+    fzf_colors = true,
     fzf_opts = {
       ["--layout"] = "reverse",
       ["--info"] = "inline-right",

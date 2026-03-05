@@ -17,7 +17,7 @@ return {
 
     return {
       options = {
-        theme = "auto",
+        theme = "gruvbox-baby",
         globalstatus = true,
         icons_enabled = true,
         component_separators = { left = "", right = "" },

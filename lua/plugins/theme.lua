@@ -1,36 +1,30 @@
 return {
   {
-    "eldritch-theme/eldritch.nvim",
+    "luisiacc/gruvbox-baby",
     lazy = false,
     priority = 1000,
-    opts = {
-      transparent = true,
-      italics = {
-        comments = true,
-        keywords = true,
-        functions = false,
-        strings = false,
-        variables = false,
-      },
-      overrides = {},
-      palette_overrides = {}
-    },
     config = function()
-      require("eldritch").setup({
-        transparent = true,
-        italics = {
-          comments = true,
-          keywords = true,
-          functions = false,
-          strings = false,
-          variables = false,
-        },
-        overrides = {},
-        palette_overrides = {}
-      })
-      vim.cmd.colorscheme("eldritch")
-      vim.api.nvim_set_hl(0, "LineNr", { fg = "#3d3d3d" })
-      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#0cd0f9", bold = true })
+      vim.g.gruvbox_baby_transparent_mode = 1
+      vim.g.gruvbox_baby_background_color = "darker"
+      vim.cmd.colorscheme("gruvbox-baby")
+
+      -- Force some highlights if the theme doesn't handle them perfectly
+      local highlights = {
+        ["Normal"] = { bg = "none" },
+        ["NormalFloat"] = { bg = "none" },
+        ["NormalNC"] = { bg = "none" },
+        ["FloatBorder"] = { bg = "none" },
+        ["SignColumn"] = { bg = "none" },
+        ["LineNr"] = { fg = "#504945", bg = "none" },
+        ["CursorLineNr"] = { fg = "#fabd2f", bold = true, bg = "none" },
+        ["EndOfBuffer"] = { bg = "none" },
+        ["NeoTreeNormal"] = { bg = "none" },
+        ["NeoTreeNormalNC"] = { bg = "none" },
+      }
+
+      for group, opts in pairs(highlights) do
+        vim.api.nvim_set_hl(0, group, opts)
+      end
     end,
   },
 }
