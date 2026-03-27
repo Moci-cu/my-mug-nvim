@@ -13,4 +13,5 @@ vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.clipboard = "unnamedplus"             -- share yank/paste with system clipboard
+vim.opt.backupcopy = "yes"                    -- fix flickering when saving in hypr config
 vim.opt.fillchars = { eob = " ", vert = " " } -- remove ~ from empty lines

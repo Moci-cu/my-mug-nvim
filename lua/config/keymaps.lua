@@ -22,3 +22,6 @@ map('n', '<leader>ts', terminal.toggle_vertical, { silent = true, nowait = true,
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev Diagnostic' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Next Diagnostic' })
 map('n', 'gl', vim.diagnostic.open_float, { desc = 'Line Diagnostics' })
+
+-- Mini.starter keymaps
+map('n', '<leader>hs', '<cmd>lua require("mini.starter").open()<cr>', { desc = 'Open starter screen' })
