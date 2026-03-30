@@ -2,7 +2,7 @@ return {
   {
     "echasnovski/mini.starter",
     version = false, -- wait for new release to pin it
-    lazy = false, -- load immediately
+    lazy = false,    -- load immediately
     priority = 1000, -- high priority to ensure it loads early
     config = function()
       local starter = require("mini.starter")
@@ -33,14 +33,14 @@ return {
           starter.gen_hook.aligning("center", "center"),
         },
         -- Custom header (optional)
-        header = [[
-          ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-          ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-          ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-          ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-          ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-          ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-        ]],
+        -- header = [[
+        --   ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+        --   ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+        --   ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+        --   ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+        --   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+        --   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+        -- ]],
         -- Footer (optional)
         footer = "",
         -- Evaluate this function to get footer dynamically
@@ -56,10 +56,14 @@ return {
           -- Optional: set some keymaps for the starter buffer
           vim.keymap.set("n", "<Leader>q", "<Cmd>qa<CR>", { buffer = true, desc = "Quit Neovim" })
           -- Vim-style navigation (h/j/k/l for movement)
-          vim.keymap.set("n", "h", "<Cmd>lua MiniStarter.update_current_item('prev')<CR>", { buffer = true, desc = "Select previous item" })
-          vim.keymap.set("n", "j", "<Cmd>lua MiniStarter.update_current_item('next')<CR>", { buffer = true, desc = "Select next item" })
-          vim.keymap.set("n", "k", "<Cmd>lua MiniStarter.update_current_item('prev')<CR>", { buffer = true, desc = "Select previous item" })
-          vim.keymap.set("n", "l", "<Cmd>lua MiniStarter.update_current_item('next')<CR>", { buffer = true, desc = "Select next item" })
+          vim.keymap.set("n", "h", "<Cmd>lua MiniStarter.update_current_item('prev')<CR>",
+            { buffer = true, desc = "Select previous item" })
+          vim.keymap.set("n", "j", "<Cmd>lua MiniStarter.update_current_item('next')<CR>",
+            { buffer = true, desc = "Select next item" })
+          vim.keymap.set("n", "k", "<Cmd>lua MiniStarter.update_current_item('prev')<CR>",
+            { buffer = true, desc = "Select previous item" })
+          vim.keymap.set("n", "l", "<Cmd>lua MiniStarter.update_current_item('next')<CR>",
+            { buffer = true, desc = "Select next item" })
           -- Quick fzf-lua actions
           vim.keymap.set("n", "f", function()
             require('mini.starter').close()
