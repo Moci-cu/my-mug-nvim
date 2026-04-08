@@ -10,22 +10,21 @@ return {
         -- Configuration options (optional)
         -- See https://github.com/echasnovski/mini.starter for details
         items = {
-          starter.sections.recent_files(10, false),
           starter.sections.builtin_actions(),
           {
-            name = 'Fzf-lua',
+            name = 'Mini.Pick',
             action = '',
-            section = 'Fzf-lua',
+            section = 'Mini.Pick',
           },
           {
             name = '  Files',
-            action = function() vim.cmd('FzfLua files') end,
-            section = 'Fzf-lua',
+            action = function() require('mini.starter').close(); require('mini.pick').builtin.files() end,
+            section = 'Mini.Pick',
           },
           {
             name = '  Live grep',
-            action = function() vim.cmd('FzfLua live_grep') end,
-            section = 'Fzf-lua',
+            action = function() require('mini.starter').close(); require('mini.pick').builtin.grep() end,
+            section = 'Mini.Pick',
           },
         },
         content_hooks = {
@@ -64,15 +63,15 @@ return {
             { buffer = true, desc = "Select previous item" })
           vim.keymap.set("n", "l", "<Cmd>lua MiniStarter.update_current_item('next')<CR>",
             { buffer = true, desc = "Select next item" })
-          -- Quick fzf-lua actions
+          -- Quick pick actions
           vim.keymap.set("n", "f", function()
             require('mini.starter').close()
-            vim.cmd("FzfLua files")
-          end, { buffer = true, desc = "Open fzf-lua files" })
+            require('mini.pick').builtin.files()
+          end, { buffer = true, desc = "Open pick files" })
           vim.keymap.set("n", "s", function()
             require('mini.starter').close()
-            vim.cmd("FzfLua live_grep")
-          end, { buffer = true, desc = "Open fzf-lua live grep" })
+            require('mini.pick').builtin.grep()
+          end, { buffer = true, desc = "Open pick grep" })
         end,
       })
     end,

@@ -6,11 +6,37 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      -- Ensure blink.cmp is loaded before LSP so capabilities are available
-      "saghen/blink.cmp",
     },
     config = function()
-      -- This is where all the LSP shenanigans will live
+      -- Completion options for built-in LSP completion
+      vim.opt.completeopt = { "menu", "menuone", "popup", "noinsert" }
+      vim.opt.pumborder = "rounded"
+
+      -- Completion keymaps
+      vim.keymap.set('i', '<C-Space>', function()
+        vim.lsp.completion.get()
+      end, { desc = 'Trigger LSP completion' })
+
+      vim.keymap.set('i', '<CR>', function()
+        if vim.fn.pumvisible() == 1 then
+          return '<C-y>'
+        end
+        return '<CR>'
+      end, { expr = true, desc = 'Accept completion or newline' })
+
+      vim.keymap.set('i', '<C-j>', function()
+        if vim.fn.pumvisible() == 1 then
+          return '<C-n>'
+        end
+        return '<C-j>'
+      end, { expr = true, desc = 'Next completion item or newline' })
+
+      vim.keymap.set('i', '<C-k>', function()
+        if vim.fn.pumvisible() == 1 then
+          return '<C-p>'
+        end
+        return '<C-k>'
+      end, { expr = true, desc = 'Prev completion item or delete line' })
 
       -- 1. Define the on_attach function. This is the heart of the LSP experience.
       -- It runs whenever a server attaches to a buffer.
@@ -47,23 +73,30 @@ return {
       end
 
       -- 2. Configure lspconfig to use our on_attach function for all servers.
-      -- We use the "*" wildcard to apply this to every server.
-      -- This uses the new, non-deprecated API.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      do
-        local ok_blink, blink_cmp = pcall(require, "blink.cmp")
-        if ok_blink then
-          if blink_cmp.get_lsp_capabilities then
-            capabilities = blink_cmp.get_lsp_capabilities(capabilities)
-          elseif blink_cmp.get_capabilities then
-            capabilities = blink_cmp.get_capabilities(capabilities)
-          end
-        end
-      end
 
       vim.lsp.config("*", {
         on_attach = on_attach,
         capabilities = capabilities,
+      })
+
+      -- Enable built-in LSP completion with autotrigger (per docs)
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('my.lsp.completion', { clear = true }),
+        callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if not client then return end
+          if not client:supports_method('textDocument/completion') then return end
+
+          -- Extend triggerCharacters for autotrigger on every keypress
+          local chars = {}
+          for i = 32, 126 do
+            table.insert(chars, string.char(i))
+          end
+          client.server_capabilities.completionProvider.triggerCharacters = chars
+
+          vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end,
       })
 
       local servers = { "lua_ls", "clangd", "marksman", "rust_analyzer", "zls" }
@@ -75,7 +108,6 @@ return {
       end
 
       -- 3. Let mason-lspconfig handle the installation and enabling of servers.
-      -- It will automatically pick up the default configuration we just set.
       require("mason-lspconfig").setup({
         ensure_installed = servers,
         handlers = {

@@ -22,16 +22,4 @@ function M.normal_tab()
   return tab_key()
 end
 
-function M.register_blink_action()
-  local ok_actions, actions = pcall(require, "blink.cmp.actions")
-  if not ok_actions then
-    return
-  end
-  actions.ai_nes = function()
-    if try_nes() then
-      return true
-    end
-  end
-end
-
 return M
