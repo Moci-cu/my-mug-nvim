@@ -11,8 +11,7 @@ end
 map({ 'n', 'v' }, '<Esc>', clear_search_then_escape, { expr = true, desc = 'Escape and clear search' })
 map({ 'n', 'v' }, '<C-c>', clear_search_then_escape, { expr = true, desc = 'Escape and clear search' })
 
-map('n', '<leader>f', '<cmd>Pick files<cr>', opts)
-map('n', '<leader>sg', '<cmd>Pick grep<cr>', opts)
+-- refer.nvim keymaps are defined in lua/plugins/refer.lua
 
 
 map('n', '<leader>tt', terminal.toggle_horizontal, { silent = true, nowait = true, desc = 'Toggle terminal' })

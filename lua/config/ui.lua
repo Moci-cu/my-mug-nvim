@@ -37,40 +37,23 @@ M.icons = {
   kind = default_kind_icons,
 }
 
-local function get_hl(name)
-  local ok, value = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
-  if not ok then
-    return {}
-  end
-  return value
-end
-
-function M.apply_float_style()
-  local float = get_hl("NormalFloat")
-  float.bg = "NONE"
-  vim.api.nvim_set_hl(0, "NormalFloat", float)
-
-  local border = get_hl("FloatBorder")
-  border.bg = "NONE"
-  vim.api.nvim_set_hl(0, "FloatBorder", border)
-
-  -- Keep completion popups aligned with our float styling.
-  vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "BlinkCmpMenuSelected", { link = "PmenuSel" })
-  vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "FloatBorder" })
-  vim.api.nvim_set_hl(0, "BlinkCmpSignature", { link = "NormalFloat" })
-  vim.api.nvim_set_hl(0, "BlinkCmpSignatureBorder", { link = "FloatBorder" })
-
-  -- fzf-lua inherits NormalFloat/FloatBorder automatically.
-end
-
-M.apply_float_style()
-
 vim.api.nvim_create_autocmd("ColorScheme", {
-  desc = "Reapply transparent float styling",
-  callback = M.apply_float_style,
+  callback = function()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#504945", bold = true })
+    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })
+  end,
 })
+
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#504945", bold = true })
+vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })
 
 return M

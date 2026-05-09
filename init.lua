@@ -1,5 +1,4 @@
 -- ~/.config/nvim/init.lua
---
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- disable netrw at the very start of your init.lua

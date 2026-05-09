@@ -1,8 +1,8 @@
 local icons = {
-  Error = "",
-  Warn = "",
-  Info = "",
-  Hint = "",
+  Error = " ",
+  Warn = " ",
+  Info = " ",
+  Hint = " ",
 }
 
 for severity, icon in pairs(icons) do
